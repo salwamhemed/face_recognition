@@ -3,9 +3,7 @@ import cv2 as cv
 import numpy as np 
 
 people = ['jungkook','V','jimin']
-print("hello")
-print("gnfjf")
-print("version 4")
+
 DIR = r'C:\Users\salwa\OneDrive\Desktop\Opencv - tutorial\Faces\train'
 features = []
 labels = []
