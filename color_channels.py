@@ -11,7 +11,7 @@ print(img.shape)
 print(b.shape)
 print(g.shape)
 print(r.shape)
-
+print("version 15")
 merged = cv.merge([b,g,r])
 blank = np.zeros(img.shape[:2], dtype='uint8')
 blue = cv.merge([b,blank,blank])
