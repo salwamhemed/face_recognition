@@ -7,6 +7,7 @@ people = ['jungkook','V','jimin']
 DIR = r'C:\Users\salwa\OneDrive\Desktop\Opencv - tutorial\Faces\train'
 features = []
 labels = []
+haar_cascade = cv.CascadeClassifier('haar_face.xml')
 
 def create_train():
   for person in people:
@@ -21,7 +22,18 @@ def create_train():
       faces_rect = haar_cascade.detectMultiScale(gray, scaleFactor=1.1 , minNeighbors=4)
       for(x,y,w,h) in faces_rect:
         faces_roi = gray[y:y+h, x:x+w]
-        features.append(label)
+        features.append(faces_roi)
+        labels.append(label)
 
 create_train()
-print(f'length of the features = {len(features)}')
+print("training done -------------")
+##print(f'length of the features = {len(features)}')
+##print(f'length of the labels = {len(labels)}')
+features = np.array(features, dtype='object')
+labels = np.array(labels)
+face_recognizer = cv.face.LBPHFaceRecognizer_create()
+ # Train the recognizer on the features list and the labels list 
+face_recognizer.save('face_trained.yml')
+face_recognizer.train(features,labels)
+np.save('features.npy',features)
+np.save('labels.npy',labels)
